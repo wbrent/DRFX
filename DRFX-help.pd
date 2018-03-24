@@ -1,0 +1,259 @@
+#N canvas 199 219 998 646 10;
+#X declare -path ./plugins;
+#X obj 2 2 cnv 15 300 10 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 2 2 cnv 15 10 300 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#N canvas 639 419 734 614 FX-plugins 0;
+#X obj 20 460 pitch-shift-plugin A;
+#X obj 270 20 pulser-plugin A;
+#X obj 270 170 reverb-plugin A;
+#X obj 270 330 ring-mod-plugin A;
+#X obj 521 373 declare -path ./plugins;
+#X obj 546 237 PLUGIN-SHELL A;
+#X text 509 64 These are effects processing abstractions stored in
+the "plugins" directory. To work properly with DRFX \, they follow
+some basic parameter and wireless audio bus naming conventions. For
+more details on how to make your own effects processing subpatch or
+abstraction \, see INSTRUCTIONS.pdf and the PLUGIN-SHELL.pd abstraction
+in "plugins" directory, f 28;
+#X obj 20 330 phaser-plugin A;
+#X obj 20 170 echodel-plugin B;
+#X obj 20 20 echodel-plugin A;
+#X obj 270 460 sr-decimator-plugin A;
+#X restore 441 554 pd FX-plugins;
+#X obj 647 211 cnv 15 250 140 empty empty empty 20 12 0 14 -233017
+-66577 0;
+#X text 659 227 DRFX - Dynamic Routing for FX;
+#X obj 54 503 cnv 15 125 75 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 230 342 hradio 15 1 0 6 empty empty empty 0 -8 0 10 -262144
+-1 -1 5;
+#N canvas 377 68 1004 807 test-presets 0;
+#X obj 108 41 inlet;
+#X msg 430 248 \; sine-pulse-ring-mod-A-switch-set 1 \; noise-pulse-echodel-A-switch-set
+1 \; \; ring-mod-A-freq-set 100 \; ring-mod-A-out-gain-set 100 \; ring-mod-A-reverb-A-switch-set
+1 \; reverb-A-out-gain-set 100 \; reverb-A-tap-out-gain-set 100 \;
+\; echodel-A-deltime-set 100 \; echodel-A-fdbk-set 0.8 \; echodel-A-out-gain-set
+100 \; echodel-A-tap-out-gain-set 96 \;;
+#X msg 49 461 \; sine-pulse-reverb-A-switch-set 1 \; \; reverb-A-rvb-set
+80 \; reverb-A-out-gain-set 100 \; reverb-A-tap-out-gain-set 100 \;
+;
+#X obj 108 103 t f b;
+#X msg 128 253 \; sine-pulse-pitch-shift-A-switch-set 1 \; sine-pulse-reverb-A-switch-set
+1 \; \; pitch-shift-A-transpo-set 6 \; pitch-shift-A-out-gain-set 100
+\; pitch-shift-A-tap-out-gain-set 96 \; \; reverb-A-rvb-set 75 \; reverb-A-out-gain-set
+100 \; reverb-A-tap-out-gain-set 100 \;;
+#X msg 698 55 \; sine-pulse-pitch-shift-A-switch-set 1 \; sine-pulse-reverb-A-switch-set
+1 \; noise-pulse-echodel-B-switch-set 1 \; \; pitch-shift-A-ring-mod-A-switch-set
+1 \; ring-mod-A-reverb-A-switch-set 1 \; ring-mod-A-echodel-A-switch-set
+1 \; reverb-A-pulser-A-switch-set 1 \; \; pitch-shift-A-transpo-set
+6 \; reverb-A-rvb-set 85 \; pulser-A-rate-set 7 \; ring-mod-A-freq-set
+777 \; echodel-A-fdbk-set 0.75 \; echodel-A-deltime-set 100 \; echodel-B-fdbk-set
+0.85 \; echodel-B-deltime-set 170 \; \; pitch-shift-A-out-gain-set
+100 \; ring-mod-A-out-gain-set 100 \; reverb-A-out-gain-set 100 \;
+echodel-A-out-gain-set 100 \; echodel-B-out-gain-set 100 \; pulser-A-out-gain-set
+100 \; \; reverb-A-tap-out-gain-set 100 \; echodel-A-tap-out-gain-set
+92 \; echodel-B-tap-out-gain-set 96 \; pulser-A-tap-out-gain-set 100
+\;;
+#X obj 212 99 qlist;
+#X msg 212 71 read ./presets/init.txt \, rewind \, bang;
+#X text 209 17 Load the initialization preset text file to clear previous
+routing \, output gains \, and FX parameter settings between preset
+changes.;
+#X obj 108 155 select 0 1 2 3 4 5;
+#X msg 637 420 sine-pulse-pitch-shift-A-switch-set 1 \; sine-pulse-sr-decimator-A-switch-set
+1 \; noise-pulse-sr-decimator-A-switch-set 1 \; \; echodel-A-phaser-A-switch-set
+1 \; pitch-shift-A-reverb-A-switch-set 1 \; pitch-shift-A-echodel-B-switch-set
+1 \; sr-decimator-A-echodel-A-switch-set 1 \; \; echodel-A-out-gain-set
+100 \; echodel-B-out-gain-set 100 \; phaser-A-out-gain-set 100 \; pitch-shift-A-out-gain-set
+100 \; reverb-A-out-gain-set 100 \; sr-decimator-A-out-gain-set 100
+\; \; echodel-B-tap-out-gain-set 100 \; phaser-A-tap-out-gain-set 100
+\; reverb-A-tap-out-gain-set 106 \; \; echodel-A-deltime-set 100 \;
+echodel-A-fdbk-set 0.8 \; echodel-B-deltime-set 175 \; echodel-B-fdbk-set
+0.9 \; phaser-A-rate-set 0.3 \; pitch-shift-A-transpo-set 16 \; pulser-A-rate-set
+5 \; reverb-A-rvb-set 90 \; ring-mod-A-freq-set 700 \; sr-decimator-A-rate-set
+3000 \;;
+#X msg 339 438 \; sine-pulse-echodel-B-switch-set 1 \; noise-pulse-echodel-B-switch-set
+1 \; \; echodel-B-phaser-A-switch-set 1 \; echodel-B-pitch-shift-A-switch-set
+1 \; pitch-shift-A-pulser-A-switch-set 1 \; pulser-A-reverb-A-switch-set
+1 \; \; echodel-B-out-gain-set 100 \; phaser-A-out-gain-set 100 \;
+pitch-shift-A-out-gain-set 104 \; pulser-A-out-gain-set 100 \; reverb-A-out-gain-set
+100 \; \; phaser-A-tap-out-gain-set 94 \; reverb-A-tap-out-gain-set
+94 \; \; echodel-B-deltime-set 146 \; echodel-B-fdbk-set 0.9 \; phaser-A-rate-set
+0.3 \; pulser-A-rate-set 5 \; pitch-shift-A-transpo-set 11 \; reverb-A-rvb-set
+60 \;;
+#X connect 0 0 3 0;
+#X connect 3 0 9 0;
+#X connect 3 1 7 0;
+#X connect 7 0 6 0;
+#X connect 9 0 2 0;
+#X connect 9 1 4 0;
+#X connect 9 2 1 0;
+#X connect 9 3 5 0;
+#X connect 9 4 11 0;
+#X connect 9 5 10 0;
+#X restore 230 365 pd test-presets;
+#X msg 194 288 matrix \$1;
+#X obj 194 268 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#N canvas 748 231 556 393 exporting-and-loading-presets 0;
+#X obj 37 307 outlet;
+#X msg 37 93 export \$1;
+#X obj 37 43 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 37 63 savepanel;
+#X obj 159 231 qlist;
+#X msg 159 203 read \$1 \, rewind \, bang;
+#X obj 159 157 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 159 177 openpanel;
+#X text 124 53 << export current routing settings \, FX parameter settings
+\, and FX output gain settings as a text file. You can later load this
+file with [qlist] \, paste the code into a message box \, or paste
+it into a separate cue file to automate complex changes in sequence.
+;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 5 0;
+#X restore 246 416 pd exporting-and-loading-presets;
+#X text 346 345 << switch between a few pre-composed routing chains
+stored in message boxes., f 40;
+#X obj 96 550 bng 15 250 50 0 empty empty done 17 7 0 10 -262144 -1
+-1;
+#N canvas 302 81 1031 562 other-stuff 0;
+#X obj 28 513 outlet;
+#X msg 116 36 clear-routing;
+#X text 222 34 << clear all routing in the matrix with this command.
+;
+#X msg 271 251 matrix-margin-x 150;
+#X msg 281 271 matrix-margin-y 150;
+#X text 445 245 << you may want to change the default x and y margins
+of the routing matrix to make space for your row and column labels.
+If so \, you'll need to destroy your matrix \, set margins \, then
+create again., f 67;
+#X text 338 86 << mute the output gain stage of all FX;
+#X text 338 116 << mute the tap-out gain stage of all FX;
+#X msg 206 146 fx-out-gain-unity;
+#X msg 226 176 fx-tap-out-gain-unity;
+#X text 378 146 << set the output gain stage of all FX to unity;
+#X text 378 176 << set the tap-out gain stage of all FX to unity;
+#X msg 166 86 fx-out-gain-mute;
+#X msg 186 116 fx-tap-out-gain-mute;
+#X text 599 314 << Use a broadcast message like this to change the
+gain ramp time of a particular routing switch from the default 40ms
+to any duration you like.;
+#X text 599 374 << set all input-FX and inter-FX switch ramp times
+to any duration you like.;
+#X msg 338 375 global-ramp-time 3000;
+#X msg 311 315 \; sine-pulse-reverb-A-switch-ramp-time 5000 \;;
+#X connect 1 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 8 0 0 0;
+#X connect 9 0 0 0;
+#X connect 12 0 0 0;
+#X connect 13 0 0 0;
+#X connect 16 0 0 0;
+#X restore 290 455 pd other-stuff;
+#X text 281 188 << once source and effects lists are sent \, create
+the graphical routing matrix. You can destroy it to reset., f 37;
+#X text 527 127 << specify the parameters of your effects so DRFX can
+store current settings in preset files., f 48;
+#X text 501 71 << specify a list of effects. You need to follow a few
+simple conventions for creating FX subpatches or abstractions that
+will work with DRFX., f 74;
+#X text 482 412 << learn how to export routing matrix settings \, FX
+parameter settings \, and gain settings to a separate text file.;
+#X text 280 266 << send "matrix 1" to pull up the automatically created
+routing matrix subpatch. "matrix 0" closes the window., f 41;
+#X obj 623 538 catch~ main-out;
+#X text 671 564 Here \, the tap-out signals from FX in [pd FX-plugins]
+are thrown to a bus called "main-out", f 27;
+#N canvas 503 66 691 464 input-signals 0;
+#X obj 486 218 loadbang;
+#X obj 90 218 *~ 0.1;
+#X obj 90 290 *~;
+#X obj 270 158 *~ 0.1;
+#X obj 270 230 *~;
+#X obj 270 136 noise~;
+#X obj 486 240 metro 500;
+#X obj 486 262 f;
+#X obj 516 264 + 1;
+#X obj 516 286 % 2;
+#X obj 486 314 select 0 1;
+#X msg 126 246 1 3 \, 0 100 50;
+#X obj 126 268 vline~;
+#X msg 306 186 1 3 \, 0 100 50;
+#X obj 306 208 vline~;
+#X text 118 35 Here \, we use a pulsing sinusoid and a noise burst
+as test source signals. Try microphone inputs when you're ready with
+either an audio interface and real microphones \, or using your computer's
+built-in microphone and headphones to prevent feedback.;
+#X obj 90 154 + 48;
+#X obj 90 133 random 36;
+#X obj 90 175 mtof;
+#X obj 47 102 t b b;
+#X obj 90 196 osc~;
+#X obj 90 356 s~ sine-pulse;
+#X obj 270 356 s~ noise-pulse;
+#X connect 0 0 6 0;
+#X connect 1 0 2 0;
+#X connect 2 0 21 0;
+#X connect 3 0 4 0;
+#X connect 4 0 22 0;
+#X connect 5 0 3 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 7 0 10 0;
+#X connect 8 0 9 0;
+#X connect 9 0 7 1;
+#X connect 10 0 19 0;
+#X connect 10 1 13 0;
+#X connect 11 0 12 0;
+#X connect 12 0 2 1;
+#X connect 13 0 14 0;
+#X connect 14 0 4 1;
+#X connect 16 0 18 0;
+#X connect 17 0 16 0;
+#X connect 18 0 20 0;
+#X connect 19 0 11 0;
+#X connect 19 1 17 0;
+#X connect 20 0 1 0;
+#X restore 441 520 pd input-signals;
+#X obj 623 581 dac~;
+#X obj 96 520 DRFX;
+#X msg 163 191 create;
+#X msg 173 211 destroy;
+#X text 659 267 For detailed information on DRFX functions \, how to
+specify input signals \, effects subpatches \, preset commands \, etc
+\, refer to the included README.pdf, f 34;
+#X text 659 247 version 0.5.1 \, March 2018;
+#X text 284 34 << specify a list of signal sources transmitted via
+[send~]/[receive~] names., f 79;
+#X text 422 451 << see some useful messages for setting all FX output
+gains and tap output gains to unity \, or muting them;
+#X text 242 548 mess around with some basic FX to see how the system
+works >>, f 32;
+#X msg 36 37 input-list sine-pulse noise-pulse;
+#X msg 80 75 fx-list echodel-A echodel-B phaser-A pitch-shift-A pulser-A
+reverb-A ring-mod-A sr-decimator-A;
+#X msg 114 121 fx-params echodel-A-deltime echodel-A-fdbk echodel-B-deltime
+echodel-B-fdbk phaser-A-rate pitch-shift-A-transpo pulser-A-rate reverb-A-rvb
+ring-mod-A-freq sr-decimator-A-rate;
+#X connect 6 0 7 0;
+#X connect 8 0 23 0;
+#X connect 9 0 8 0;
+#X connect 10 0 23 0;
+#X connect 13 0 23 0;
+#X connect 19 0 22 0;
+#X connect 19 0 22 1;
+#X connect 23 0 12 0;
+#X connect 24 0 23 0;
+#X connect 25 0 23 0;
+#X connect 31 0 23 0;
+#X connect 32 0 23 0;
+#X connect 33 0 23 0;

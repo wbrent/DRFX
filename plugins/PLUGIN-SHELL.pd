@@ -1,0 +1,58 @@
+#N canvas 91 105 896 596 10;
+#X floatatom 487 226 5 0 0 1 fxname-#1-tap-out-gain fxname-#1-tap-out-gain-set
+fxname-#1-tap-out-gain, f 5;
+#X obj 85 446 dbtorms;
+#X obj 85 468 pack f 40;
+#X obj 85 490 line~;
+#X obj 37 399 *~;
+#X obj 87 370 s~ fxname-\$1-out;
+#X obj 37 59 catch~ fxname-\$1-in;
+#X floatatom 487 256 5 0 0 1 fxname-#1-parameter-1 fxname-#1-parameter-1-set
+fxname-#1-parameter-1, f 5;
+#X obj 125 221 dbtorms;
+#X obj 125 243 pack f 40;
+#X obj 125 265 line~;
+#X obj 37 244 *~;
+#X obj 125 198 r fxname-\$1-out-gain;
+#X floatatom 487 196 5 0 0 1 fxname-#1-out-gain fxname-#1-out-gain-set
+fxname-#1-out-gain, f 5;
+#X obj 85 423 r fxname-\$1-tap-out-gain;
+#N canvas 0 22 567 346 YOUR-PROCESSING-HERE 0;
+#X obj 67 43 inlet~;
+#X obj 67 237 outlet~;
+#X text 113 95 Do something to the signal...;
+#X text 229 178 Use your parameter data...;
+#X obj 192 152 r fxname-\$1-parameter-1;
+#X connect 0 0 1 0;
+#X restore 37 133 pd YOUR-PROCESSING-HERE;
+#X obj 37 523 throw~ main-out;
+#X text 40 25 Signal comes into your plugin via [catch~];
+#X text 113 343 Signal is sent to other plugins via [send~];
+#X text 167 477 A "tap-out" gain stage sends signal out to the speakers.
+In this case \, that's to a wireless [throw~] bus called "main-out"
+;
+#X text 250 82 ARGUMENTS \; \$1: A symbol identifier to distinguish
+between multiple instances of this effect module (fxname-A \, fxname-B
+\, etc).;
+#X text 485 294 Add similar GUI controls for additional parameters
+as needed by your effect. Look inside the properties of these number
+boxes to see how the send/receive names are specified. The most important
+aspect is that they start with the effect name/identifier \, and end
+with "-set" for the receive name. This convention aligns with DRFX's
+system for storing gain and parameter values when exporting presets.
+It also allows you to set GUI control values via broadcast messages
+from the master patch or a qlist file. You can put these GUI controls
+in any layer of your patch.;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 1;
+#X connect 4 0 16 0;
+#X connect 6 0 15 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 1;
+#X connect 11 0 5 0;
+#X connect 11 0 4 0;
+#X connect 12 0 8 0;
+#X connect 14 0 1 0;
+#X connect 15 0 11 0;
