@@ -22,7 +22,7 @@ in "plugins" directory, f 28;
 #X obj 20 20 echodel-plugin A;
 #X obj 270 460 sr-decimator-plugin A;
 #X restore 441 554 pd FX-plugins;
-#X obj 647 211 cnv 15 250 140 empty empty empty 20 12 0 14 -233017
+#X obj 647 211 cnv 15 250 150 empty empty empty 20 12 0 14 -233017
 -66577 0;
 #X text 659 227 DRFX - Dynamic Routing for FX;
 #X obj 54 503 cnv 15 125 75 empty empty empty 20 12 0 14 -233017 -66577
@@ -228,7 +228,7 @@ built-in microphone and headphones to prevent feedback.;
 #X obj 96 520 DRFX;
 #X msg 163 191 create;
 #X msg 173 211 destroy;
-#X text 659 267 For detailed information on DRFX functions \, how to
+#X text 659 287 For detailed information on DRFX functions \, how to
 specify input signals \, effects subpatches \, preset commands \, etc
 \, refer to the included README.pdf, f 34;
 #X text 659 247 version 0.5.1 \, March 2018;
@@ -244,6 +244,7 @@ reverb-A ring-mod-A sr-decimator-A;
 #X msg 114 121 fx-params echodel-A-deltime echodel-A-fdbk echodel-B-deltime
 echodel-B-fdbk phaser-A-rate pitch-shift-A-transpo pulser-A-rate reverb-A-rvb
 ring-mod-A-freq sr-decimator-A-rate;
+#X text 659 267 William Brent;
 #X connect 6 0 7 0;
 #X connect 8 0 23 0;
 #X connect 9 0 8 0;

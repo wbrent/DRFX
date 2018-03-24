@@ -2612,7 +2612,7 @@ stuff;
 #X restore 423 154 pd init;
 #X obj 43 246 outlet;
 #X obj 43 124 r \$0-create-matrix;
-#X text 269 57 version 0.5 \, 2016;
+#X text 269 57 version 0.5.1 \, March 2018;
 #X connect 0 0 1 0;
 #X connect 1 0 6 0;
 #X connect 3 0 4 0;
