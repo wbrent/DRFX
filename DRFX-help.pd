@@ -228,9 +228,6 @@ built-in microphone and headphones to prevent feedback.;
 #X obj 96 520 DRFX;
 #X msg 163 191 create;
 #X msg 173 211 destroy;
-#X text 659 287 For detailed information on DRFX functions \, how to
-specify input signals \, effects subpatches \, preset commands \, etc
-\, refer to the included README.pdf, f 34;
 #X text 659 247 version 0.5.1 \, March 2018;
 #X text 284 34 << specify a list of signal sources transmitted via
 [send~]/[receive~] names., f 79;
@@ -245,6 +242,9 @@ reverb-A ring-mod-A sr-decimator-A;
 echodel-B-fdbk phaser-A-rate pitch-shift-A-transpo pulser-A-rate reverb-A-rvb
 ring-mod-A-freq sr-decimator-A-rate;
 #X text 659 267 William Brent;
+#X text 659 287 For detailed information on DRFX methods \, how to
+specify input signals \, effects subpatches \, preset commands \, etc
+\, refer to the included INSTRUCTIONS.pdf, f 34;
 #X connect 6 0 7 0;
 #X connect 8 0 23 0;
 #X connect 9 0 8 0;
@@ -255,6 +255,6 @@ ring-mod-A-freq sr-decimator-A-rate;
 #X connect 23 0 12 0;
 #X connect 24 0 23 0;
 #X connect 25 0 23 0;
+#X connect 30 0 23 0;
 #X connect 31 0 23 0;
 #X connect 32 0 23 0;
-#X connect 33 0 23 0;
